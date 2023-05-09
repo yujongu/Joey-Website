@@ -1,0 +1,11 @@
+.SquareContainer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--highlight);
+  color: var(--secondary);
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  padding: 10px;
+}
