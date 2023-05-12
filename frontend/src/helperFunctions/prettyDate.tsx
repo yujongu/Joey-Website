@@ -13,7 +13,7 @@ export function dateToString(date: Date, type: number): string {
   const hour: number =
     date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
   const minute: number = date.getMinutes();
-  const ampm: string = date.getHours() > 12 ? "오후" : "오전";
+  const ampm: string = date.getHours() >= 12 ? "오후" : "오전";
 
   switch (type) {
     case 1:
