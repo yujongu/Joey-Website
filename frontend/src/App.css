@@ -6,15 +6,49 @@
   display: flex;
   flex-direction: column;
 }
-.WeatherIcons {
-  object-fit: contain;
-  width: 100px;
-  height: 100px;
-}
 
 #topTitleBar {
   padding: 10px;
   margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#topTitleBar_TextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#topTitleBar_TextContainer > p {
   color: var(--primary);
-  border: 2px solid aqua;
+  font-family: "Gaegu", cursive;
+}
+#topTitleBar_TextContainer > p:first-child {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#topTitleBar_TextContainer > p:nth-child(2) {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+#topTitleBar_TextContainer > p:nth-child(3) {
+  font-size: 24px;
+  font-weight: 400;
+}
+#topTitleBar_TextContainer > p:nth-child(4) {
+  font-size: 20px;
+  font-weight: 500;
+}
+#topTitleBar_TextContainer > p:nth-child(5) {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.WeatherIcons {
+  object-fit: contain;
+  width: 250px;
+  height: auto;
 }
