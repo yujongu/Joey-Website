@@ -5,6 +5,9 @@
   --highlight: #d48b23;
   --warning: #f4231e;
 }
+p {
+  margin: 0px;
+}
 
 body {
   margin: 0;
