@@ -25,9 +25,9 @@ router.route("/currentWeather").get(async (req, res) => {
     let lon = data[0].lon;
     let tempUnit = "metric"; //imperial
     let tempSymbol = "K";
-    if (tempUnit == "metric") {
+    if (tempUnit === "metric") {
       tempSymbol = "°C";
-    } else if (tempUnit == "imperial") {
+    } else if (tempUnit === "imperial") {
       tempSymbol = "°F";
     }
 

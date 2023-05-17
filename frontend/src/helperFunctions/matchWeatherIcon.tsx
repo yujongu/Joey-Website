@@ -38,7 +38,7 @@ export function getWeatherIcon(code: string): string {
   ];
 
   for (let i = 0; i < IconList.length; i++) {
-    if (IconList[i].iconCode == code) {
+    if (IconList[i].iconCode === code) {
       return IconList[i].icon;
     }
   }

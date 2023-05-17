@@ -52,7 +52,7 @@ function App() {
     <div className="App">
       <div id="topTitleBar">
         <div id="topTitleBar_TextContainer">
-          <p>어서오세요, ㅁㅁㅁ님!</p>
+          <p>Welcome!!, ㅁㅁㅁ님!</p>
           <p>{dateToString(today, 2)}</p>
           <p>{dateToString(today, 1)}</p>
           <p>

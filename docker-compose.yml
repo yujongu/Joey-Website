@@ -1,13 +1,5 @@
 version: "3.9"
 services:
-  api:
-    build: ./backend
-    container_name: MyWebBackend_c
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
   client:
     build: ./frontend
     container_name: MyWebFrontend_c
@@ -15,3 +7,11 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
+  server:
+    build: ./backend
+    container_name: MyWebBackend_c
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
