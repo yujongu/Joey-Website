@@ -1,0 +1,9 @@
+.sidebarItem_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.sidebar_item_label {
+  margin: 10px;
+}
