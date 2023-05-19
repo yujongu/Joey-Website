@@ -2,7 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8px;
+  margin: 8px 0px;
+}
+.sidebarItem_icon {
+  /* Same as sidebarInitWidth value */
+  width: 50px;
+  align-self: center;
 }
 .sidebar_item_label {
   width: 100px;

@@ -10,7 +10,7 @@ type SidebarIconProps = {
 
 const SidebarItem = ({ icon, label }: SidebarIconProps) => (
   <div className="sidebarItem_container">
-    <FontAwesomeIcon icon={icon} size="2xl" />
+    <FontAwesomeIcon icon={icon} size="2xl" className="sidebarItem_icon" />
     <span className="sidebar_item_label">{label}</span>
   </div>
 );

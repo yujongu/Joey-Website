@@ -10,6 +10,7 @@ import {
   faBars,
   faCat,
   faIcons,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function App() {
@@ -89,7 +90,7 @@ function App() {
             />
           )}
 
-          <SidebarItem icon={faCat} label="Home" />
+          <SidebarItem icon={faUser} label="Home" />
           <SidebarItem icon={faCat} label="Message" />
           <SidebarItem icon={faCat} label="About Me" />
           <SidebarItem icon={faCat} label="Quite a long message" />
