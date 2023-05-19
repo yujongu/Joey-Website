@@ -8,13 +8,16 @@ import SidebarItem from "./components/sidebar_item";
 import {
   faArrowLeft,
   faBars,
+  faCat,
   faIcons,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function App() {
   const weatherService = new WeatherService();
-
+  const sidebarInitWidth = 50;
+  const sidebarExpandedWidth = 180;
   const [today, setToday] = useState<Date>(new Date());
-  const [sidebarWidth, setSidebarWidth] = useState(50);
+  const [sidebarWidth, setSidebarWidth] = useState(sidebarInitWidth);
 
   interface WeatherObjectType {
     location: string;
@@ -58,13 +61,39 @@ function App() {
   return (
     <div className="WebContainer">
       <div
-        className="Main_sidebar"
         style={{
-          width: `${sidebarWidth}px`,
+          backgroundColor: "var(--background)",
+          padding: "10px 0px",
         }}
       >
-        <SidebarItem icon={faBars} label="" />
-        <SidebarItem icon={faArrowLeft} label="Hi" />
+        <div
+          className="Main_sidebar"
+          style={{
+            width: `${sidebarWidth}px`,
+            transition: "all 400ms cubic-bezier(0.635, -0.175, 0.650, 0.190)",
+          }}
+        >
+          {sidebarWidth !== sidebarInitWidth ? (
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              size="2xl"
+              onClick={() => setSidebarWidth(sidebarInitWidth)}
+              style={{ margin: "10px", alignSelf: "flex-end" }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faBars}
+              size="2xl"
+              onClick={() => setSidebarWidth(sidebarExpandedWidth)}
+              style={{ margin: "10px", alignSelf: "flex-end" }}
+            />
+          )}
+
+          <SidebarItem icon={faCat} label="Home" />
+          <SidebarItem icon={faCat} label="Message" />
+          <SidebarItem icon={faCat} label="About Me" />
+          <SidebarItem icon={faCat} label="Quite a long message" />
+        </div>
       </div>
 
       <div className="App">

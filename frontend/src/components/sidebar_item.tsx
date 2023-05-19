@@ -8,14 +8,10 @@ type SidebarIconProps = {
   //   setSidebarWidth?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const hi = () => {
-  console.log("HI");
-};
-
 const SidebarItem = ({ icon, label }: SidebarIconProps) => (
-  <div className="sidebarItem_container" onClick={hi}>
+  <div className="sidebarItem_container">
     <FontAwesomeIcon icon={icon} size="2xl" />
-    {/* {label ? <span className="sidebar_item_label">{label}</span> : <div />} */}
+    <span className="sidebar_item_label">{label}</span>
   </div>
 );
 export default SidebarItem;

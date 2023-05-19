@@ -1,15 +1,19 @@
 .WebContainer {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 .Main_sidebar {
   display: flex;
   flex-direction: column;
-  background-color: teal;
-  height: 100vh;
-  align-items: center;
-  padding-top: 10px;
+  background-color: var(--secondary);
+  height: 100%;
+  align-items: flex-start;
+  padding: 10px, 0px;
   box-sizing: border-box;
+  border-radius: 20px;
+  margin: 0px 15px;
+  overflow: hidden;
 }
 
 .App {
