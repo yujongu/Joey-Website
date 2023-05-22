@@ -83,8 +83,8 @@ function Main() {
               style={{
                 margin: "10px",
                 alignSelf: "flex-end",
-                cursor: "pointer",
               }}
+              className="isButton"
             />
           ) : (
             <FontAwesomeIcon
@@ -94,8 +94,8 @@ function Main() {
               style={{
                 margin: "10px",
                 alignSelf: "flex-end",
-                cursor: "pointer",
               }}
+              className="isButton"
             />
           )}
 

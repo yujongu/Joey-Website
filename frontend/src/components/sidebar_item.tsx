@@ -18,7 +18,7 @@ const SidebarItem = ({ icon, label }: SidebarIconProps) => {
 
   return (
     <div
-      className="sidebarItem_container"
+      className="sidebarItem_container isButton"
       onClick={() => redirectToPage(label)}
     >
       <FontAwesomeIcon icon={icon} size="2xl" className="sidebarItem_icon" />
