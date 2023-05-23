@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faHandshake } from "@fortawesome/free-regular-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 
 function Login() {
   const navigate = useNavigate();

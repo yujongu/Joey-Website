@@ -1,0 +1,14 @@
+#signupFormContainer {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 270px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+#signupFormContainer > input:last-child {
+  background-color: var(--highlight);
+  color: white;
+  font-weight: 700;
+}
