@@ -14,6 +14,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RouteName } from "../constants/RouteName";
 function Main() {
   const weatherService = new WeatherService();
   const sidebarInitWidth = 50;
@@ -99,10 +100,14 @@ function Main() {
             />
           )}
 
-          <SidebarItem icon={faUser} label="Login" />
-          <SidebarItem icon={faCat} label="Cats" />
-          <SidebarItem icon={faMessage} label="Message" />
-          <SidebarItem icon={faCode} label="whoami" />
+          <SidebarItem
+            icon={faUser}
+            label={RouteName.LOGIN.label}
+            address={RouteName.LOGIN.addr}
+          />
+          <SidebarItem icon={faCat} label="Cats" address="/" />
+          <SidebarItem icon={faMessage} label="Message" address="/" />
+          <SidebarItem icon={faCode} label="whoami" address="/" />
         </div>
       </div>
 

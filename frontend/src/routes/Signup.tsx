@@ -8,6 +8,7 @@ import {
   SIGNUP_INITIAL_STATE,
   signupReducer,
 } from "../helperFunctions/signupReducer";
+import { RouteName } from "../constants/RouteName";
 function Signup() {
   const navigate = useNavigate();
   const userService = new UserService();
@@ -19,7 +20,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const navigateToLogin = () => {
-    navigate("/login", { replace: true });
+    navigate(RouteName.LOGIN.addr, { replace: true });
   };
   const signup = async () => {
     await userService

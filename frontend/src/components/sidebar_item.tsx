@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 type SidebarIconProps = {
   icon: IconProp;
   label: string;
+  address: string;
   //   setSidebarWidth?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SidebarItem = ({ icon, label }: SidebarIconProps) => {
+const SidebarItem = ({ icon, label, address }: SidebarIconProps) => {
   const navigate = useNavigate();
 
   const redirectToPage = (label: string) => {
-    navigate(`/${label.toLowerCase()}`, { replace: true });
+    navigate(address, { replace: true });
   };
 
   return (

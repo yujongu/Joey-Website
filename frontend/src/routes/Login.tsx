@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
+import { RouteName } from "../constants/RouteName";
 
 function Login() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const navigateToSignup = () => {
-    navigate("/signup");
+    navigate(RouteName.SIGNUP.addr);
   };
 
   return (
