@@ -11,13 +11,4 @@ export class WeatherService {
       console.log(error);
     }
   }
-
-  // public async addUser(user: any) {
-  //     const response = await fetch(`/api/user`, {
-  //         method: 'POST',
-  //         headers: {'Content-Type': 'application/json'},
-  //         body: JSON.stringify({user})
-  //       })
-  //     return await response.json();
-  // }
 }
