@@ -3,9 +3,17 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
 const app = express();
 const port = 3001;
+const con = require("./v1/services/connection");
+
+con.connect((err) => {
+  if (err) {
+    throw err;
+  } else {
+    console.log("CONNECTED TO MYSQL");
+  }
+});
 
 // adding Helmet to enhance your Rest API's security
 app.use(helmet());
