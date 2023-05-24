@@ -16,7 +16,24 @@ function create(user) {
       }
     });
   });
-
   return createUser;
 }
-module.exports = { create };
+
+function get(uid) {
+  const sqlQuery =
+    "SELECT user_id, password, user_name, created_at FROM user WHERE user_id = ?;";
+
+  let returnMessage = "User Not Found";
+  const getUser = new Promise((resolve, reject) => {
+    db.query(sqlQuery, [uid], (err, res) => {
+      if (err) {
+        console.error("Error with get user", err);
+        reject(returnMessage);
+      } else {
+        resolve(res[0]);
+      }
+    });
+  });
+  return getUser;
+}
+module.exports = { create, get };
