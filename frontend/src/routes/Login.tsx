@@ -11,6 +11,8 @@ function Login() {
   const userService = new UserService();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("");
+  const [userPw, setUserPw] = useState<string>("");
 
   const navigateToSignup = () => {
     navigate(RouteName.SIGNUP.addr);
@@ -21,22 +23,41 @@ function Login() {
   };
 
   const login = async () => {
-    await userService
-      .getUser({
-        userId: "joey",
-        password: "password",
-      })
-      .then((response) =>
-        response.json().then((data) => {
-          console.log(data);
-          if (data.message === "Correct") {
-            localStorage.setItem("jwtToken", data.data.token);
-            navigateToMain();
-          } else {
-            alert("Invalid account info");
-          }
+    if (userId.length === 0 || userPw.length === 0) {
+      alert("User Info is empty");
+    } else {
+      await userService
+        .getUser({
+          userId: userId,
+          password: userPw,
         })
-      );
+        .then((response) =>
+          response.json().then((data) => {
+            if (data.message === "Correct") {
+              localStorage.setItem("jwtToken", data.data.token);
+              navigateToMain();
+            } else {
+              if (data.message === "User Not Found") {
+                alert("Invalid User Id");
+              } else {
+                alert("Invalid account info");
+              }
+            }
+          })
+        );
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "loginUserId":
+        setUserId(e.target.value);
+        break;
+
+      case "loginUserPw":
+        setUserPw(e.target.value);
+        break;
+    }
   };
 
   return (
@@ -47,7 +68,14 @@ function Login() {
       </div>
 
       <div id="loginFormContainer">
-        <input className="loginInput" placeholder="User ID" type="text" />
+        <input
+          name="loginUserId"
+          className="loginInput"
+          placeholder="User ID"
+          type="text"
+          onChange={handleInputChange}
+          value={userId}
+        />
         <div
           style={{
             display: "flex",
@@ -56,9 +84,12 @@ function Login() {
           }}
         >
           <input
+            name="loginUserPw"
             className="loginInput"
             placeholder="Password"
             type={showPassword ? "text" : "password"}
+            onChange={handleInputChange}
+            value={userPw}
           />
 
           <label
