@@ -26,7 +26,10 @@ function get(uid) {
   let returnMessage = "User Not Found";
   const getUser = new Promise((resolve, reject) => {
     db.query(sqlQuery, [uid], (err, res) => {
-      if (err) {
+      console.log("Res", res);
+      console.log("Res", res.length);
+      console.log("Res", res.length == 1);
+      if (err || res.length != 1) {
         console.error("Error with get user", err);
         reject(returnMessage);
       } else {

@@ -69,8 +69,8 @@ router.route("/login").post((req, res) => {
       });
     })
     .catch((err) => {
-      console.log("Route err", err);
-      // res.status(404).send()
+      console.log("Route Err", err);
+      res.status(404).send({ message: "User Not Found" });
     });
 });
 
