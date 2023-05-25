@@ -10,7 +10,7 @@ const { create, get } = require("../services/user");
 router.route("/hi").get((req, res) => {
   res.send(`hello world  from user`);
 });
-
+)
 router.route("/signup").post((req, res) => {
   let uid = req.body.user.userId;
   let pw = req.body.user.password;

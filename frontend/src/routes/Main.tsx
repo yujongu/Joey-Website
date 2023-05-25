@@ -15,10 +15,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RouteName } from "../constants/RouteName";
+import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
 function Main() {
   const weatherService = new WeatherService();
   const sidebarInitWidth = 50;
   const sidebarExpandedWidth = 180;
+  const [authToken, setAuthToken] = useState<string>("");
+
   const [today, setToday] = useState<Date>(new Date());
   const [sidebarWidth, setSidebarWidth] = useState(sidebarInitWidth);
 
@@ -45,6 +48,14 @@ function Main() {
     feelsLike: 0,
     tempUnit: "K",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      setAuthToken(token);
+      //query user info
+    }
+  }, []);
 
   useEffect(() => {
     const getWeather = async () => {
@@ -100,11 +111,20 @@ function Main() {
             />
           )}
 
-          <SidebarItem
-            icon={faUser}
-            label={RouteName.LOGIN.label}
-            address={RouteName.LOGIN.addr}
-          />
+          {authToken ? (
+            <SidebarItem
+              icon={faAddressCard}
+              label={RouteName.PROFILE.label}
+              address={RouteName.PROFILE.addr}
+            />
+          ) : (
+            <SidebarItem
+              icon={faUser}
+              label={RouteName.LOGIN.label}
+              address={RouteName.LOGIN.addr}
+            />
+          )}
+
           <SidebarItem icon={faCat} label="Cats" address="/" />
           <SidebarItem icon={faMessage} label="Message" address="/" />
           <SidebarItem icon={faCode} label="whoami" address="/" />

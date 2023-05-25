@@ -15,11 +15,11 @@ function Login() {
   const [userPw, setUserPw] = useState<string>("");
 
   const navigateToSignup = () => {
-    navigate(RouteName.SIGNUP.addr);
+    navigate(RouteName.SIGNUP.addr, { replace: true });
   };
 
   const navigateToMain = () => {
-    navigate(RouteName.MAIN.addr);
+    navigate(RouteName.MAIN.addr, { replace: true });
   };
 
   const login = async () => {
