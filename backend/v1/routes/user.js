@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 const { create, get } = require("../services/user");
 
 router.route("/hi").get((req, res) => {
@@ -30,7 +32,7 @@ router.route("/signup").post((req, res) => {
   });
 });
 
-router.route("/login").get((req, res) => {
+router.route("/login").post((req, res) => {
   let uid = req.body.user.userId;
   let pw = req.body.user.password;
 
@@ -44,12 +46,21 @@ router.route("/login").get((req, res) => {
           res.status(404).send({ message: "something Went Wrong" });
         }
         if (isValid) {
+          const token = jwt.sign(
+            { user_id: resp.user_id },
+            process.env.JWTSECRET,
+            {
+              expiresIn: "2h",
+            }
+          );
+
           res.status(200).send({
             message: "Correct",
             data: {
               uid: resp.user_id,
               name: resp.user_name,
               joined: resp.created_at,
+              token: token,
             },
           });
         } else {

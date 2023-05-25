@@ -4,14 +4,39 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import { RouteName } from "../constants/RouteName";
+import { UserService } from "../services/userService";
 
 function Login() {
   const navigate = useNavigate();
+  const userService = new UserService();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const navigateToSignup = () => {
     navigate(RouteName.SIGNUP.addr);
+  };
+
+  const navigateToMain = () => {
+    navigate(RouteName.MAIN.addr);
+  };
+
+  const login = async () => {
+    await userService
+      .getUser({
+        userId: "joey",
+        password: "password",
+      })
+      .then((response) =>
+        response.json().then((data) => {
+          console.log(data);
+          if (data.message === "Correct") {
+            localStorage.setItem("jwtToken", data.data.token);
+            navigateToMain();
+          } else {
+            alert("Invalid account info");
+          }
+        })
+      );
   };
 
   return (
@@ -51,7 +76,12 @@ function Login() {
           </label>
         </div>
 
-        <input className="loginInput isButton" value="Login" type="button" />
+        <input
+          className="loginInput isButton"
+          value="Login"
+          type="button"
+          onClick={login}
+        />
       </div>
 
       <div className="isButton" style={{ color: "var(--warning)" }}>
