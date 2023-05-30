@@ -10,7 +10,7 @@ const { create, get } = require("../services/user");
 router.route("/hi").get((req, res) => {
   res.send(`hello world  from user`);
 });
-)
+
 router.route("/signup").post((req, res) => {
   let uid = req.body.user.userId;
   let pw = req.body.user.password;
@@ -72,6 +72,16 @@ router.route("/login").post((req, res) => {
       console.log("Route Err", err);
       res.status(404).send({ message: "User Not Found" });
     });
+});
+
+router.route("/me").get((req, res) => {
+  const uid = req.user.user_id;
+  get(uid).then((data) => {
+    const userData = {
+      name: data.user_name,
+    };
+    res.status(200).send(userData);
+  });
 });
 
 module.exports = router;

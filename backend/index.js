@@ -39,11 +39,11 @@ app.get("/", (req, res) => {
 const weatherRouter = require("./v1/routes/weather.js");
 app.use("/api/v1/weather", weatherRouter);
 
-const userRouter = require("./v1/routes/user.js");
-app.use("/api/v1/user", userRouter);
-
 const jwtAuthenticator = require("./middleware/jwtAuth.js");
 app.use(jwtAuthenticator);
+
+const userRouter = require("./v1/routes/user.js");
+app.use("/api/v1/user", userRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

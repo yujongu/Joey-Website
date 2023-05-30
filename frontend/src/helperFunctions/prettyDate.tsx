@@ -21,7 +21,7 @@ export function dateToString(date: Date, type: number): string {
       return `${year}년 ${month}월 ${day}일`;
     case 2:
       //Only time
-      return `${ampm} ${hour}:${minute}`;
+      return `${ampm} ${hour}:${minute < 10 ? "0" : ""}${minute}`;
 
     default:
       //Both date and time
