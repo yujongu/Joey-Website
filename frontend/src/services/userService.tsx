@@ -18,4 +18,15 @@ export class UserService {
 
     return response;
   }
+
+  public async getMe(TOKEN: string) {
+    const response = await fetch("/api/v1/user/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+    return response;
+  }
 }
