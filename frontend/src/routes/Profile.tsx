@@ -3,6 +3,9 @@ import "./Profile.css";
 import { useEffect, useState } from "react";
 import { UserService } from "../services/userService";
 import { RouteName } from "../constants/RouteName";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import Namecard from "../components/namecard";
 function Profile() {
   const navigate = useNavigate();
   const userService = new UserService();
@@ -11,7 +14,11 @@ function Profile() {
     navigate(RouteName.LOGIN.addr, { replace: true });
   };
 
-  const [userInfo, setUserInfo] = useState();
+  const navigateToMain = () => {
+    navigate(RouteName.MAIN.addr, { replace: true });
+  };
+
+  const [userInfo, setUserInfo] = useState("");
 
   useEffect(() => {
     const getMe = async () => {
@@ -41,6 +48,18 @@ function Profile() {
     getMe();
   }, []);
 
-  return <div>Welcome, {userInfo}</div>;
+  return (
+    <div className="profileContainer">
+      <div className="profileTopNavbar">
+        <FontAwesomeIcon
+          icon={faHouse}
+          size="2xl"
+          className="isButton"
+          onClick={navigateToMain}
+        />
+      </div>
+      <Namecard name={userInfo} />
+    </div>
+  );
 }
 export default Profile;

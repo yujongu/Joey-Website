@@ -16,14 +16,18 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RouteName } from "../constants/RouteName";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
+import { UserService } from "../services/userService";
 function Main() {
   const weatherService = new WeatherService();
+  const userService = new UserService();
+
   const sidebarInitWidth = 50;
   const sidebarExpandedWidth = 180;
   const [authToken, setAuthToken] = useState<string>("");
 
   const [today, setToday] = useState<Date>(new Date());
   const [sidebarWidth, setSidebarWidth] = useState(sidebarInitWidth);
+  const [userInfo, setUserInfo] = useState("");
 
   interface WeatherObjectType {
     location: string;
@@ -50,7 +54,32 @@ function Main() {
   });
 
   useEffect(() => {
+    const getMe = async () => {
+      let token = localStorage.getItem("jwtToken");
+      if (!token) {
+        token = "";
+      }
+
+      const res = await userService.getMe(token);
+      if (res) {
+        if (res.status === 401) {
+          //Invalid Token
+          localStorage.removeItem("jwtToken");
+          //Alert User
+          alert("Please Login Again");
+          setUserInfo("");
+        } else {
+          res.json().then((data) => {
+            setUserInfo(data.name);
+          });
+        }
+      }
+    };
+
+    getMe();
+
     const token = localStorage.getItem("jwtToken");
+
     if (token) {
       setAuthToken(token);
       //query user info
@@ -111,7 +140,7 @@ function Main() {
             />
           )}
 
-          {authToken ? (
+          {userInfo !== "" ? (
             <SidebarItem
               icon={faAddressCard}
               label={RouteName.PROFILE.label}
@@ -134,7 +163,7 @@ function Main() {
       <div className="Main">
         <div id="topTitleBar">
           <div id="topTitleBar_TextContainer">
-            <p>어서오세요, ㅁㅁㅁ님!</p>
+            <p>어서오세요, {userInfo}님!</p>
             <p>{dateToString(today, 2)}</p>
             <p>{dateToString(today, 1)}</p>
             <p>

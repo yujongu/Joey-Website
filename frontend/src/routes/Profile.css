@@ -1,0 +1,12 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profileTopNavbar {
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  color: white;
+  margin: 10px;
+}

@@ -1,0 +1,44 @@
+.namecardContainer {
+  aspect-ratio: 1.75;
+  width: 400px;
+  perspective: 700px;
+}
+.namecardContainer:active > .namecard {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.namecard {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1100ms;
+  transform-style: preserve-3d;
+}
+
+.namecard_front,
+.namecard_back {
+  height: 100%;
+  width: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 0 5px rgba(50, 50, 50, 0.25);
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.namecard_front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-color: beige;
+}
+.namecard_back {
+  transform: rotateY(180deg);
+  display: flex;
+  background-color: beige;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
