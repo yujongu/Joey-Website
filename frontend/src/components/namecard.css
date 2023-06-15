@@ -3,10 +3,10 @@
   width: 400px;
   perspective: 700px;
 }
-.namecardContainer:active > .namecard {
-  cursor: pointer;
-  transform: rotateY(180deg);
-}
+/* .namecardContainer:active > .namecard { */
+/* cursor: pointer; */
+/* transform: rotateY(180deg); */
+/* } */
 
 .namecard {
   height: 100%;
