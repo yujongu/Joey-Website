@@ -1,5 +1,14 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 import "./namecard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faFacebook,
+  faFacebookSquare,
+  faInstagram,
+  faLinkedin,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 type NamecardProps = {
   name: string;
 };
@@ -12,6 +21,7 @@ const Namecard = ({ name }: NamecardProps) => {
   const [xDir, setXDir] = useState(0);
   const [yDir, setYDir] = useState(0);
   let speed: number = 0.8;
+  let tiltAngle: number = 20;
 
   const isNamecardFront = (deg: number): boolean => {
     let normalXDeg: number = Math.abs(deg) % 360;
@@ -49,22 +59,22 @@ const Namecard = ({ name }: NamecardProps) => {
       if (lastY < ev.clientY) {
         //down
         if (isNamecardFront(xDir)) {
-          if (yDir > -30) {
+          if (yDir > -tiltAngle) {
             setYDir(yDir - speed);
           }
         } else {
-          if (yDir < 30) {
+          if (yDir < tiltAngle) {
             setYDir(yDir + speed);
           }
         }
       } else if (lastY > ev.clientY) {
         //up
         if (isNamecardFront(xDir)) {
-          if (yDir < 30) {
+          if (yDir < tiltAngle) {
             setYDir(yDir + speed);
           }
         } else {
-          if (yDir > -30) {
+          if (yDir > -tiltAngle) {
             setYDir(yDir - speed);
           }
         }
@@ -88,13 +98,45 @@ const Namecard = ({ name }: NamecardProps) => {
         }}
       >
         <div className="namecard_front">
-          <div>{name}</div>
-          <div>퍼듀 대학교</div>
+          <div>Don't let segfault let you down</div>
         </div>
         <div className="namecard_back">
-          <div>This is the backside</div>
-          <div>LinkedIn: alskdfjlasjdflasdflkjasf</div>
-          <div>Instagram: asdjfkklasjdflkajsdlfjls</div>
+          <div className="namecard_back_leftside">{name}</div>
+          <div className="namecard_back_rightside">
+            <div className="namecard_back_rightside_socialContainer">
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                size="2xl"
+                className="isButton"
+              />
+              <span>LinkedIn</span>
+            </div>
+
+            <div className="namecard_back_rightside_socialContainer">
+              <FontAwesomeIcon
+                icon={faInstagram}
+                size="2xl"
+                className="isButton"
+              />
+              <span>Instagram</span>
+            </div>
+            <div className="namecard_back_rightside_socialContainer">
+              <FontAwesomeIcon
+                icon={faYoutube}
+                size="2xl"
+                className="isButton"
+              />
+              <span>Youtube</span>
+            </div>
+            <div className="namecard_back_rightside_socialContainer">
+              <FontAwesomeIcon
+                icon={faFacebook}
+                size="2xl"
+                className="isButton"
+              />
+              <span>Facebook</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
