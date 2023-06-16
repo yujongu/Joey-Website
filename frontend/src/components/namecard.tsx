@@ -20,7 +20,7 @@ const Namecard = ({ name }: NamecardProps) => {
   const [lastY, setLastY] = useState(0);
   const [xDir, setXDir] = useState(0);
   const [yDir, setYDir] = useState(0);
-  let speed: number = 0.8;
+  let speed: number = 1;
   let tiltAngle: number = 20;
 
   const isNamecardFront = (deg: number): boolean => {
