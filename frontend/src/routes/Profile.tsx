@@ -59,6 +59,40 @@ function Profile() {
         />
       </div>
       <Namecard name={userInfo} />
+      <div className="profileMainContainer">
+        <div className="profile_InfoContainer">
+          <div>Fun Phrase</div>
+          <input type="text" />
+        </div>
+        <div className="profile_InfoContainer">
+          <div>Location</div>
+          <input type="text" />
+        </div>
+        <div className="profile_InfoContainer">
+          <div>Temperature Unit</div>
+          <div className="profile_InfoTempContainer">
+            <div style={{ display: "flex", flex: 1 }}>
+              <label htmlFor="celcius_input">Celcius</label>
+              <input
+                id="celcius_input"
+                type="radio"
+                value="Celcius"
+                name="TempUnit"
+              />
+            </div>
+            <div style={{ display: "flex", flex: 1 }}>
+              <label htmlFor="fahrenheit_input">Fahrenheit</label>
+              <input
+                id="fahrenheit_input"
+                type="radio"
+                value="Fahrenheit"
+                name="TempUnit"
+              />
+            </div>
+          </div>
+        </div>
+        <div>Add socials</div>
+      </div>
     </div>
   );
 }
