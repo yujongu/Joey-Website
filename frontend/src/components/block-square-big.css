@@ -8,4 +8,13 @@
   height: 200px;
   border-radius: 20px;
   padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.SquareContainer:hover {
+  box-shadow: 5px 5px;
+}
+
+.SquareContainer:active {
+  box-shadow: 3px 3px;
 }

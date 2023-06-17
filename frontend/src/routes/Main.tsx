@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RouteName } from "../constants/RouteName";
+import { AppName } from "../constants/RouteName";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
 import { UserService } from "../services/userService";
 function Main() {
@@ -183,10 +184,18 @@ function Main() {
             className="WeatherIcons"
           />
         </div>
-        <BlockSquareBig title="This is food" />
-        <BlockSquareBig title="This is food" />
-        <BlockSquareBig title="This is food" />
-        <BlockSquareBig title="This is food" />
+        <div className="Main_AppContainer">
+          <BlockSquareBig
+            id={AppName.DATEPLANNER.id}
+            title={AppName.DATEPLANNER.label}
+            address={AppName.DATEPLANNER.addr}
+          />
+          <BlockSquareBig
+            id={AppName.COFFEEINTAKE.id}
+            title={AppName.COFFEEINTAKE.label}
+            address={AppName.COFFEEINTAKE.addr}
+          />
+        </div>
       </div>
     </div>
   );
