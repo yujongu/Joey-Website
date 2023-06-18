@@ -43,3 +43,11 @@
 #fahrenheit_input {
   width: 40px;
 }
+.profile_InfoContainer_InputPlaceholder {
+  width: 80%;
+  display: flex;
+}
+.profile_InfoContainer_InputPlaceholder > input {
+  font-size: 20px;
+  flex: 1;
+}

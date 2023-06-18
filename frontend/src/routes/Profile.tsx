@@ -91,6 +91,32 @@ function Profile() {
             </div>
           </div>
         </div>
+        <div className="profile_InfoContainer">
+          <div>LinkedIn</div>
+          <div className="profile_InfoContainer_InputPlaceholder">
+            <span>linkedin.com/in/</span>
+
+            <input type="text" />
+          </div>
+        </div>
+        <div className="profile_InfoContainer">
+          <div>Instagram</div>
+          <input type="text" placeholder="@abcdefu" />
+        </div>
+        <div className="profile_InfoContainer">
+          <div>Facebook</div>
+          <div className="profile_InfoContainer_InputPlaceholder">
+            <span>facebook.com/</span>
+            <input type="text" />
+          </div>
+        </div>
+        <div className="profile_InfoContainer">
+          <div>YouTube</div>
+          <div className="profile_InfoContainer_InputPlaceholder">
+            <span>youtube.com/</span>
+            <input type="text" />
+          </div>
+        </div>
         <div>Add socials</div>
       </div>
     </div>
