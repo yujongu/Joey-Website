@@ -40,8 +40,8 @@
 }
 
 #topTitleBar_TextContainer > p {
-  color: var(--primary);
-  font-family: "Gaegu", cursive;
+  color: white;
+  font-family: "Noto Sans KR", sans-serif;
 }
 #topTitleBar_TextContainer > p:first-child {
   font-size: 40px;
@@ -73,6 +73,8 @@
 }
 
 .Main_AppContainer {
+  padding: 10px;
+  margin: 10px;
   display: grid;
   row-gap: 20px;
   column-gap: 20px;
