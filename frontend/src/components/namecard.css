@@ -3,16 +3,12 @@
   width: 400px;
   perspective: 700px;
 }
-/* .namecardContainer:active > .namecard { */
-/* cursor: pointer; */
-/* transform: rotateY(180deg); */
-/* } */
 
 .namecard {
   height: 100%;
   width: 100%;
   position: relative;
-  transition: transform 1100ms;
+  transition: transform 500ms;
   transform-style: preserve-3d;
 }
 
@@ -63,4 +59,5 @@
   justify-content: space-between;
   padding-right: 20px;
   box-sizing: border-box;
+  margin-right: 10px;
 }

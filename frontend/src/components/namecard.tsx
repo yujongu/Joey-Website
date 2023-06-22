@@ -9,6 +9,7 @@ import {
   faLinkedin,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 type NamecardProps = {
   name: string;
 };
@@ -83,18 +84,41 @@ const Namecard = ({ name }: NamecardProps) => {
       setLastY(ev.clientY);
     }
   };
+
+  const updateRotation = () => {
+    setXDir(xDir + 180);
+    setYDir(
+      Math.ceil(Math.random() * 10) * (Math.round(Math.random()) ? 1 : -1)
+    );
+  };
+
+  const redirectToSocial = () => {
+    console.log("HI");
+  };
+
   return (
-    <div
-      className="namecardContainer"
-      onMouseDown={updateMousePosition}
-      onMouseUp={updateMousePosition}
-      onMouseLeave={updateMousePosition}
-      onMouseMove={getMouseAngle}
-    >
+    <div className="namecardContainer">
+      <div
+        style={{
+          backgroundColor: "white",
+          position: "absolute",
+          right: -40,
+          bottom: 0,
+          borderRadius: "50%",
+          padding: "5px",
+        }}
+        onClick={updateRotation}
+      >
+        <FontAwesomeIcon
+          icon={faArrowRotateRight}
+          size="xl"
+          className="isButton"
+        />
+      </div>
       <div
         className="namecard disableTextSelect"
         style={{
-          transform: `rotate3d(0, 1, 0, ${xDir}deg) rotate3d(1, 0, 0, ${yDir}deg)`,
+          transform: `rotateY(${xDir}deg)  rotateX(${yDir}deg)`,
         }}
       >
         <div className="namecard_front">
@@ -104,36 +128,23 @@ const Namecard = ({ name }: NamecardProps) => {
           <div className="namecard_back_leftside">{name}</div>
           <div className="namecard_back_rightside">
             <div className="namecard_back_rightside_socialContainer">
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                size="2xl"
-                className="isButton"
-              />
+              <FontAwesomeIcon icon={faLinkedin} size="2xl" />
               <span>LinkedIn</span>
             </div>
 
             <div className="namecard_back_rightside_socialContainer">
-              <FontAwesomeIcon
-                icon={faInstagram}
-                size="2xl"
-                className="isButton"
-              />
+              <FontAwesomeIcon icon={faInstagram} size="2xl" />
               <span>Instagram</span>
             </div>
-            <div className="namecard_back_rightside_socialContainer">
-              <FontAwesomeIcon
-                icon={faYoutube}
-                size="2xl"
-                className="isButton"
-              />
+            <div
+              className="namecard_back_rightside_socialContainer isButton"
+              onClick={redirectToSocial}
+            >
+              <FontAwesomeIcon icon={faYoutube} size="2xl" />
               <span>Youtube</span>
             </div>
             <div className="namecard_back_rightside_socialContainer">
-              <FontAwesomeIcon
-                icon={faFacebook}
-                size="2xl"
-                className="isButton"
-              />
+              <FontAwesomeIcon icon={faFacebook} size="2xl" />
               <span>Facebook</span>
             </div>
           </div>
