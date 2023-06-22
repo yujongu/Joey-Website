@@ -7,8 +7,8 @@ router.route("/hi").get((req, res) => {
   res.send(`hello world hahahahahahaha weather`);
 });
 
-router.route("/currentWeather").get(async (req, res) => {
-  let location = "전주";
+router.route("/currentWeather/:loc").get(async (req, res) => {
+  let location = req.params.loc;
   let locationLatLngURL = `https://api.openweathermap.org/geo/1.0/direct`;
   let locationResp = await axios.get(locationLatLngURL, {
     params: {
