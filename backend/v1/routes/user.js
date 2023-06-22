@@ -5,7 +5,7 @@ const axios = require("axios");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { create, get } = require("../services/user");
+const { create, get, update } = require("../services/user");
 
 router.route("/hi").get((req, res) => {
   res.send(`hello world  from user`);
@@ -90,6 +90,29 @@ router.route("/me").get((req, res) => {
     };
     res.status(200).send(userData);
   });
+});
+
+router.route("/update").put((req, res) => {
+  const uid = req.user.user_id;
+  update(
+    uid,
+    req.body.phrase,
+    req.body.location,
+    req.body.tempUnit,
+    req.body.LinkedIn,
+    req.body.Instagram,
+    req.body.Facebook,
+    req.body.YouTube
+  )
+    .then((resp) => {
+      console.log("Route", resp);
+      res.status(200).send({ message: resp });
+    })
+    .catch((err) => {
+      console.log("Route Err", err);
+
+      res.status(404).send({ message: err });
+    });
 });
 
 module.exports = router;

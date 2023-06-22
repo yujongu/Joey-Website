@@ -56,10 +56,10 @@ function Profile() {
                 phrase: data.phrase,
                 location: data.wLocation,
                 tempUnit: data.tempUnit,
-                LinkedIn: data.socialsLinkedIn,
-                Instagram: data.socialsInstagram,
-                Facebook: data.socialsFacebook,
-                YouTube: data.YouTube,
+                LinkedIn: data.socialsLinkedIn ? data.socialsLinkedIn : "",
+                Instagram: data.socialsInstagram ? data.socialsInstagram : "",
+                Facebook: data.socialsFacebook ? data.socialsFacebook : "",
+                YouTube: data.socialsYouTube ? data.socialsYoutube : "",
               });
               dispatch({
                 type: "LOAD_INITIAL_STATE",
@@ -71,7 +71,7 @@ function Profile() {
                   LinkedIn: data.socialsLinkedIn,
                   Instagram: data.socialsInstagram,
                   Facebook: data.socialsFacebook,
-                  YouTube: data.YouTube,
+                  YouTube: data.socialsYouTube,
                 },
               });
             });
@@ -84,8 +84,6 @@ function Profile() {
   }, []);
 
   const handleProfileInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
     switch (e.target.name) {
       case "phrase":
         dispatch({
@@ -137,6 +135,85 @@ function Profile() {
         break;
     }
   };
+
+  const updateProfile = () => {
+    console.log("HI");
+    //compare newUserInfo with userInfo to check if anything changed.
+    let isDiff = false;
+    if (userInfo.phrase !== newUserInfo.phrase.trim()) {
+      isDiff = true;
+    }
+    if (userInfo.location !== newUserInfo.location.trim()) {
+      isDiff = true;
+    }
+    if (userInfo.tempUnit !== newUserInfo.tempUnit) {
+      isDiff = true;
+    }
+    if (userInfo.LinkedIn !== newUserInfo.LinkedIn.trim()) {
+      isDiff = true;
+    }
+    if (userInfo.Instagram !== newUserInfo.Instagram.trim()) {
+      isDiff = true;
+    }
+    if (userInfo.Facebook !== newUserInfo.Facebook.trim()) {
+      isDiff = true;
+    }
+    if (userInfo.YouTube !== newUserInfo.YouTube.trim()) {
+      isDiff = true;
+    }
+    if (isDiff) {
+      const updateProfile = async () => {
+        let token = localStorage.getItem("jwtToken");
+        if (token) {
+          const res = await userService.updateProfile(
+            token,
+            newUserInfo.phrase.trim(),
+            newUserInfo.location.trim(),
+            newUserInfo.tempUnit.trim(),
+            newUserInfo.LinkedIn.trim(),
+            newUserInfo.Instagram.trim(),
+            newUserInfo.Facebook.trim(),
+            newUserInfo.YouTube.trim()
+          );
+          if (res) {
+            console.log("RESS", res);
+
+            if (res.status === 401) {
+              //Invalid Token
+              localStorage.removeItem("jwtToken");
+              //Alert User
+              alert("Please Login Again");
+              //Return to Login Page
+              navigateToLogin();
+            } else {
+              res.json().then((data) => {
+                console.log(data.message);
+                if (
+                  data.message.affectedRows === 1 &&
+                  data.message.changedRows === 1
+                ) {
+                  alert("Change Made");
+                  setUserInfo({
+                    ...userInfo,
+                    phrase: newUserInfo.phrase,
+                    location: newUserInfo.location,
+                    tempUnit: newUserInfo.tempUnit,
+                    LinkedIn: newUserInfo.LinkedIn,
+                    Instagram: newUserInfo.Instagram,
+                    Facebook: newUserInfo.Facebook,
+                    YouTube: newUserInfo.YouTube,
+                  });
+                  setEditMode(false);
+                }
+              });
+            }
+          }
+        }
+      };
+      updateProfile();
+    }
+  };
+
   return (
     <div className="profileContainer">
       <div className="profileTopNavbar">
@@ -278,6 +355,7 @@ function Profile() {
               className="loginInput isButton"
               value="Save Change"
               type="button"
+              onClick={updateProfile}
             />
             <input
               className="loginInput isButton"

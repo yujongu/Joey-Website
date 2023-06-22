@@ -29,4 +29,33 @@ export class UserService {
     });
     return response;
   }
+
+  public async updateProfile(
+    TOKEN: string,
+    phrase: string,
+    location: string,
+    tempUnit: string,
+    LinkedIn: string,
+    Instagram: string,
+    Facebook: string,
+    YouTube: string
+  ) {
+    const response = await fetch(`/api/v1/user/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify({
+        phrase,
+        location,
+        tempUnit,
+        LinkedIn,
+        Instagram,
+        Facebook,
+        YouTube,
+      }),
+    });
+    return response;
+  }
 }

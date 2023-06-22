@@ -35,4 +35,34 @@ function get(uid) {
   });
   return getUser;
 }
-module.exports = { create, get };
+
+function update(
+  uid,
+  phrase,
+  location,
+  tempUnit,
+  LinkedIn,
+  Instagram,
+  Facebook,
+  YouTube
+) {
+  const sqlQuery =
+    "UPDATE user SET my_phrase = ?, weather_location = ?, temp_unit = ?, social_Instagram = ?, social_Facebook = ?, social_YouTube = ?, social_LinkedIn = ? WHERE user_id = ?;";
+  let returnMessage = "Update User Error";
+  const updateUser = new Promise((resolve, reject) => {
+    db.query(
+      sqlQuery,
+      [phrase, location, tempUnit, Instagram, Facebook, YouTube, LinkedIn, uid],
+      (err, res) => {
+        if (err || res.affectedRows != 1) {
+          console.error("Error with update user", err);
+          reject(returnMessage);
+        } else {
+          resolve(res);
+        }
+      }
+    );
+  });
+  return updateUser;
+}
+module.exports = { create, get, update };
