@@ -4,6 +4,17 @@ export interface UserObjectType {
   tempUnit: string;
 }
 
+export interface UserProfileObjectType {
+  name: string;
+  phrase: string;
+  location: string;
+  tempUnit: string;
+  LinkedIn: string;
+  Instagram: string;
+  Facebook: string;
+  YouTube: string;
+}
+
 export interface WeatherObjectType {
   location: string;
   locationKr: string;
@@ -15,3 +26,8 @@ export interface WeatherObjectType {
   feelsLike: number;
   tempUnit: string;
 }
+
+export type NamecardProps = {
+  name: string;
+  phrase: string;
+};

@@ -14,9 +14,16 @@
 .profileMainContainer {
   margin-top: 30px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile_InfoContainer {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -50,4 +57,15 @@
 .profile_InfoContainer_InputPlaceholder > input {
   font-size: 20px;
   flex: 1;
+}
+
+.readonly {
+  border-style: none;
+  background-color: transparent;
+}
+
+.profile_OnChangeButtonContainer {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
 }
