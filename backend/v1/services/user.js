@@ -20,15 +20,11 @@ function create(user) {
 }
 
 function get(uid) {
-  const sqlQuery =
-    "SELECT user_id, password, user_name, created_at FROM user WHERE user_id = ?;";
+  const sqlQuery = "SELECT * FROM user WHERE user_id = ?;";
 
   let returnMessage = "User Not Found";
   const getUser = new Promise((resolve, reject) => {
     db.query(sqlQuery, [uid], (err, res) => {
-      // console.log("Res", res);
-      // console.log("Res", res.length);
-      // console.log("Res", res.length == 1);
       if (err || res.length != 1) {
         console.error("Error with get user", err);
         reject(returnMessage);

@@ -54,6 +54,7 @@ router.route("/login").post((req, res) => {
             }
           );
 
+          console.log("resp", resp);
           res.status(200).send({
             message: "Correct",
             data: {
@@ -79,6 +80,13 @@ router.route("/me").get((req, res) => {
   get(uid).then((data) => {
     const userData = {
       name: data.user_name,
+      phrase: data.my_phrase,
+      wLocation: data.weather_location,
+      tempUnit: data.temp_unit,
+      socialsInstagram: data.social_Instagram,
+      socialsFacebook: data.social_Facebook,
+      socialsYouTube: data.social_YouTube,
+      socialsLinkedIn: data.social_LinkedIn,
     };
     res.status(200).send(userData);
   });
