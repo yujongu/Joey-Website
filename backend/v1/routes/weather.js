@@ -7,7 +7,7 @@ router.route("/hi").get((req, res) => {
   res.send(`hello world hahahahahahaha weather`);
 });
 
-router.route("/currentWeather/:loc").get(async (req, res) => {
+router.route("/currentWeather/:loc/:tempUnit").get(async (req, res) => {
   let location = req.params.loc;
   let locationLatLngURL = `https://api.openweathermap.org/geo/1.0/direct`;
   let locationResp = await axios.get(locationLatLngURL, {
@@ -23,7 +23,8 @@ router.route("/currentWeather/:loc").get(async (req, res) => {
     let locationNameEn = data[0].local_names.en;
     let lat = data[0].lat;
     let lon = data[0].lon;
-    let tempUnit = "metric"; //imperial
+    let tempUnit = req.params.tempUnit === "Celcius" ? "metric" : "imperial";
+    console.log(req.params.tempUnit);
     let tempSymbol = "K";
     if (tempUnit === "metric") {
       tempSymbol = "°C";

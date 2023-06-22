@@ -71,11 +71,14 @@ function Main() {
                 wLoc: data.wLocation,
                 tempUnit: data.tempUnit,
               });
+
+              getWeather(data.wLocation, data.tempUnit);
             });
           }
         }
       } else {
         alert("Please Login");
+        localStorage.removeItem("jwtToken");
         setUserInfo({
           name: "손",
           wLoc: "서울",
@@ -84,15 +87,14 @@ function Main() {
       }
     };
 
-    const getWeather = async () => {
-      const res = await weatherService.getWeather(userInfo.wLoc);
+    const getWeather = async (location: string, tempUnit: string) => {
+      const res = await weatherService.getWeather(location, tempUnit);
       if (res) {
         setWeatherInfo(res);
       }
     };
 
     getMe();
-    getWeather();
   }, []);
 
   useEffect(() => {
