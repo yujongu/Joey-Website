@@ -140,7 +140,8 @@ function Main() {
             />
           )}
 
-          {userInfo.name !== "" ? (
+          {localStorage.getItem("jwtToken") !== "" &&
+          localStorage.getItem("jwtToken") !== null ? (
             <SidebarItem
               icon={faAddressCard}
               label={RouteName.PROFILE.label}
