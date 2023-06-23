@@ -25,12 +25,10 @@ function DatePlanner() {
     window.kakao.maps.event.addListener(map, "bounds_changed", () => {
       var bounds = map.getBounds();
       setBounds(bounds);
-      console.log(bounds);
     });
   }, []);
 
   const searchKeyword = (keyword: string) => {
-    alert(keyword);
     setResults([]);
     var ps = new window.kakao.maps.services.Places();
     ps.keywordSearch(keyword, placesSearchDb);
